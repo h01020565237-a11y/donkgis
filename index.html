@@ -71,12 +71,12 @@ const WD={
  5:()=>{rr(-8,-8,48,13,3,'#3a3026');rr(40,-6,18,6,2,'#1e1e1e');circ(16,14,11,'#555');circ(16,14,6,'#333');rr(-26,-6,20,9,3,'#6b4423');rr(6,3,9,15,3,'#222');rr(55,-8,4,10,1,'#999')}};
 const WP=[
  {n:'주먹',r:46,d:12,cd:.45,m:'one',sr:38,sp:.5,slot:'melee'},
- {n:'몽둥이',r:84,d:24,cd:.6,m:'aoe',slot:'melee',dur:20},
+ {n:'몽둥이',r:105,d:24,cd:.6,m:'aoe',slot:'melee',dur:20},
  {n:'창',r:120,d:30,cd:.8,m:'line',slot:'melee',dur:36},
  {n:'권총',r:300,d:24,cd:.6,m:'shot',sr:52,sp:.6,slot:'gun',mag:6,rl:1.5,first:30,add:15,cap:120,bs:560,spread:0},
  {n:'장검',r:105,d:40,cd:1.05,m:'arc',slot:'melee',dur:32},
  {n:'따발총',r:320,d:15,cd:.17,m:'shot',sr:34,sp:.4,slot:'gun',mag:30,rl:2,first:60,add:30,cap:240,bs:700,spread:.14}];
-WP[8]={n:'나뭇가지',r:66,d:14,cd:.5,m:'aoe',slot:'melee',dur:5};
+WP[8]={n:'나뭇가지',r:78,d:14,cd:.5,m:'aoe',slot:'melee',dur:5};
 WD[8]=()=>{rr(-3,-60,6,64,3,'#7b5b36');rr(-3,-60,6,7,3,'#5a4224');limb(0,-36,-13,-50,3.5,'#7b5b36');limb(0,-22,12,-35,3.5,'#7b5b36');limb(0,-46,8,-58,3,'#7b5b36')};
 const IS={1:.55,2:.4,3:.9,4:.3,5:.62,8:.62};
 
@@ -346,7 +346,7 @@ function take(i){
   else{P.hides++;if(P.hides%10==0&&P.hides<=30)note(['곰탈','곰 옷','곰 신발'][P.hides/10-1]+' 장착! 방어력 상승')}
   F.push({x:P.x,y:P.y,r:30,t:.25,m:.25,c:'#7dffa0',ring:1});
 }
-const BB={octo:{hp:55,dmg:7,sp:95}},BERT=10,BOR=150,BIR=100,BJR=96;
+const BB={octo:{hp:55,dmg:7,sp:95}},BERT=20,BOR=150,BIR=110,BJR=96;
 function goBer(e){e.ber=1;e.sp*=1.5;e.dmg=Math.round(e.dmg*1.5);note('광폭화! 보스가 날뛴다!');F.push({x:e.x,y:e.y,r:130,t:.5,m:.5,c:'#ff2a2a',ring:1})}
 function slamT(e){return Math.max(.65,1-.06*(WV.n-1))*(e.ber?.8:1)}
 function mkZones(){const n=Math.min(8,4+WV.n),R=66,Z=[{x:P.x+(Math.random()-.5)*60,y:P.y+(Math.random()-.5)*60,r:R}];
@@ -530,7 +530,7 @@ function drawHand(feet){
   if(P.glove)rr(hx-6.5,hy+4,13,4,2,'#333');
   if(w==0){ctx.strokeStyle=P.glove?'#444':'#b98a68';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(hx-5,hy-3);ctx.lineTo(hx+5,hy-3);ctx.stroke()}
   if(sw&&(m=='aoe'||m=='arc')){ctx.save();ctx.globalAlpha=.55;ctx.strokeStyle='#fff';ctx.lineWidth=7;ctx.beginPath();
-    const r=(m=='arc'?100:56)*WS,a0=m=='arc'?a-1.7:a-1.4,sp=m=='arc'?3.4:2.8;ctx.arc(hx,hy,r,a0,a0+sp*p);ctx.stroke();ctx.restore()}
+    const r=(m=='arc'?100:WP[w].r*.667)*WS,a0=m=='arc'?a-1.7:a-1.4,sp=m=='arc'?3.4:2.8;ctx.arc(hx,hy,r,a0,a0+sp*p);ctx.stroke();ctx.restore()}
 }
 function drawTitle(){
   const hz=H*.5,cx=W/2,m=Math.min(W,H),gy=H*.79,tt=performance.now()/1000,s0=Math.min(.46*H/215,W/330);
